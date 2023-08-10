@@ -276,11 +276,12 @@ def finalfunc():
     VipMembership.main(updater,dp)
     Broadcaster.Broadcastermain(updater,dp)
     updater.start_polling()
+
+bot_thread = threading.Thread(target=finalfunc)
+bot_thread.start()
+membershipcheck=threading.Thread(target=membercheck)
+membershipcheck.start()
+dbreconnect=threading.Thread(target=dbconnectfinal)
+dbreconnect.start
 if __name__ == '__main__':
-    bot_thread = threading.Thread(target=finalfunc)
-    bot_thread.start()
-    membershipcheck=threading.Thread(target=membercheck)
-    membershipcheck.start()
-    dbreconnect=threading.Thread(target=dbconnectfinal)
-    dbreconnect.start
     app.run(debug=True, port=os.getenv("PORT", default=5000))
